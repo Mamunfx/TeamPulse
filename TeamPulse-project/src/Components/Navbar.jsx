@@ -26,7 +26,7 @@ const Navbar = () => {
         tabIndex={0}
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
          <li><Link to="/">Home</Link></li>
-        <li><Link to="/Queries">Querires</Link></li>
+        <li><Link to="/Contact">Contact Us</Link></li>
         
       </ul>
     </div>
@@ -44,7 +44,7 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal ">
         <li className='text-lg'><Link to="/">Home</Link></li>
-        <li className='text-lg'><Link to="/Queries">Querires</Link></li> 
+        <li><Link to="/Contact">Contact Us</Link></li>
     </ul>
   </div>
   <div className="navbar-end space-x-2">
@@ -53,7 +53,7 @@ const Navbar = () => {
       <div className='flex gap-1'>
         <div className="relative group inline-block"> 
         <img src={user.photoURL} alt="" className="w-12 h-12 rounded-full p-1 border" /> 
-        <div className="absolute top-1/2 right-full transform -translate-y-1/2 mr-2 px-2 py-1 bg-pink-200 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity"> 
+        <div className="absolute top-1/2 right-full transform -translate-y-1/2 mr-2 px-2 py-1 bg-blue-300 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity"> 
             {user.displayName} 
             </div> 
             </div>
@@ -61,7 +61,7 @@ const Navbar = () => {
       </div>
       :
       <div className='flex gap-1'>
-        <Link to="/login" className='btn '>Sign in</Link>
+        <Link to="/Login" className='btn '>Sign in</Link>
       </div>
     }
   

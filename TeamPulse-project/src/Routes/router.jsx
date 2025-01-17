@@ -4,6 +4,9 @@ import {
 import Main from './../Layouts/Main';
 import NotFound from './../Components/NotFound';
 import Home from './../Layouts/Home';
+import Login from "../Layouts/Login";
+import Register from './../Layouts/Register';
+import Contact from './../Layouts/Contact';
 
   export const router = createBrowserRouter([
     {
@@ -13,7 +16,19 @@ import Home from './../Layouts/Home';
         {
           path:"",
           element:<Home></Home>,
-        }
+        },
+        {
+          path:"/Contact",
+          element:<Contact></Contact>,
+        },
+        {
+          path:"Login",
+          element:<Login></Login>,
+        },
+        {
+          path:"Register",
+          element:<Register></Register>,
+        },
       ]
     },
     {
