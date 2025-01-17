@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from './../AuthProvider';
 
 const Navbar = () => {
-  const user=false;
+  const {user,logOut} = useContext(AuthContext);
   return (
     <div>
        <div className="navbar bg-base-50 rounded-lg">
@@ -57,7 +58,7 @@ const Navbar = () => {
             {user.displayName} 
             </div> 
             </div>
-        <Link  className='btn ' >Sign out</Link>
+        <Link  className='btn ' onClick={logOut} >Sign out</Link>
       </div>
       :
       <div className='flex gap-1'>

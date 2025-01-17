@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { AuthContext } from './../AuthProvider';
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
-
+const {userLogin,handleGoogleSignIn,notify, notifyError} = useContext(AuthContext);
   const onSubmit = (data) => {
-    console.log(data);
+    const email = data.email;
+    const password = data.password;
+    userLogin(email, password)
+      .then(() => {
+        notify("Logged in!");
+      })
+      .catch((error) => {
+        notifyError(error.message);
+      });
   };
 
   return (
@@ -59,6 +68,7 @@ const Login = () => {
               <button
                 type="button"
                 className="submit btn bg-blue-300 w-full"
+                onClick={handleGoogleSignIn}
               >
                 <div className="flex gap-2 items-center">
                   <p>Google</p>
