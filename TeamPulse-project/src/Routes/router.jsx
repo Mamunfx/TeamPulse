@@ -7,7 +7,8 @@ import Home from './../Layouts/Home';
 import Login from "../Layouts/Login";
 import Register from './../Layouts/Register';
 import Contact from './../Layouts/Contact';
-import App from './../App';
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from './../Layouts/Dashboard';
 
   export const router = createBrowserRouter([
     {
@@ -19,12 +20,12 @@ import App from './../App';
           element:<Home></Home>,
         },
         {
-          path:"/Contact",
-          element:<Contact></Contact>,
+          path:"/Dashboard",
+          element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         },
         {
-          path:"/App",
-          element:<App></App>,
+          path:"/Contact",
+          element:<Contact></Contact>,
         },
         {
           path:"Login",

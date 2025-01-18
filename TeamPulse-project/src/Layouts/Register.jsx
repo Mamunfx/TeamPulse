@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./../AuthProvider";
 import { uploadImage } from "./../Utilities/utils";
 
@@ -14,6 +15,10 @@ const Register = () => {
     role: 'employee', 
     name: '',
   });
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -37,7 +42,7 @@ const Register = () => {
         await updateUserProfile({ displayName: name, photoURL: photoUrl }); 
         notify("Registered successfully!");
         console.log(formData);
-        
+        navigate(from, { replace: true });
       }
     } catch (error) {
       notifyError(error.message);
@@ -92,7 +97,6 @@ const Register = () => {
                 placeholder="password"
                 className="input input-bordered"
                 name="password"
-                value={formData.password}
                 onChange={handleChange}
                 required
               />
@@ -169,7 +173,7 @@ const Register = () => {
             </div>
             <div className="form-control mt-6 col-span-2">
               <button type="submit" className="btn bg-blue-300 w-full">
-                Sign In
+                Register
               </button>
             </div>
             <div className="form-control mt-6 col-span-2">

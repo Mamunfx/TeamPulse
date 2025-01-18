@@ -38,10 +38,13 @@ const AuthProvider = ({ children }) => {
   const createNewUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        setUser(userCredential.user); // Set the user state
+        notify("Signed up and logged in!");
+      })
       .catch(error => notifyError(error.message))
       .finally(() => {
         setLoading(false);
-        alert("Signed up!");
       });
   };
 
@@ -98,7 +101,6 @@ const AuthProvider = ({ children }) => {
       if (currentUser?.email) {
         setUser(currentUser);
         console.log(currentUser);
-        
       } else {
         setUser(null);
       }
