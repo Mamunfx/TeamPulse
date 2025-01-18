@@ -7,6 +7,7 @@ import Home from './../Layouts/Home';
 import Login from "../Layouts/Login";
 import Register from './../Layouts/Register';
 import Contact from './../Layouts/Contact';
+import App from './../App';
 
   export const router = createBrowserRouter([
     {
@@ -20,6 +21,10 @@ import Contact from './../Layouts/Contact';
         {
           path:"/Contact",
           element:<Contact></Contact>,
+        },
+        {
+          path:"/App",
+          element:<App></App>,
         },
         {
           path:"Login",

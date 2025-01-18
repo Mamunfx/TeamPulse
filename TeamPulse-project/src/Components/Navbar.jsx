@@ -4,6 +4,7 @@ import { AuthContext } from './../AuthProvider';
 
 const Navbar = () => {
   const {user,logOut} = useContext(AuthContext);
+
   return (
     <div>
        <div className="navbar bg-base-50 rounded-lg">
@@ -45,7 +46,7 @@ const Navbar = () => {
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal ">
         <li className='text-lg'><Link to="/">Home</Link></li>
-        <li><Link to="/Contact">Contact Us</Link></li>
+        <li className='text-lg'><Link to="/Contact">Contact Us</Link></li>
     </ul>
   </div>
   <div className="navbar-end space-x-2">

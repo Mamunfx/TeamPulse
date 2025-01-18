@@ -1,11 +1,10 @@
-
-
-import { ToastContainer, toast, Bounce } from 'react-toastify';
+import { toast, Bounce, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { createContext, useEffect, useState } from "react";
 import LoadingState from './Components/LoadingState';
 import { auth } from './firebase.init';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
