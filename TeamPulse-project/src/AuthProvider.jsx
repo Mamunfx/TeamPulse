@@ -78,15 +78,18 @@ const AuthProvider = ({ children }) => {
       .then(result => {
         setUser(result.user);
         notify("Google login successful");
+        return result.user;
       })
       .catch(error => {
         notifyError('Google sign-in failed');
         setUser(null);
+        throw error; 
       })
       .finally(() => {
         setLoading(false);
       });
   };
+  
 
   const updateUserProfile = (profile) => {
     setLoading(true);

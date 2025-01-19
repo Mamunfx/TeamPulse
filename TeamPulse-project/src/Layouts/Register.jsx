@@ -2,9 +2,10 @@ import React, { useContext, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./../AuthProvider";
 import { uploadImage } from "./../Utilities/utils";
+import SocialLogin from "../Components/Social";
 
 const Register = () => {
-  const { handleGoogleSignIn, notify, notifyError, updateUserProfile,createNewUser} = useContext(AuthContext);
+  const { notify, notifyError, updateUserProfile, createNewUser } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -12,7 +13,7 @@ const Register = () => {
     salary: '',
     designation: '',
     photo: null,
-    role: 'employee', 
+    role: 'employee',
     name: '',
   });
 
@@ -28,29 +29,9 @@ const Register = () => {
     });
   };
 
-  const handleGoogleSignInClick = async () => {
-    try {
-      const result = await handleGoogleSignIn();
-      if (result) {
-        const { email, displayName, photoURL } = result.user;
-        setFormData(prevData => ({
-          ...prevData,
-          email,
-          name: displayName,
-          photo: photoURL,
-        }));
-        notify("Signed in with Google successfully!");
-        navigate(from, { replace: true });
-      }
-    } catch (error) {
-      notifyError(error.message);
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { password, ...formDataWithoutPassword } = formData;
-    console.log(formDataWithoutPassword);
     try {
       let photoUrl = "";
       if (formData.photo && typeof formData.photo !== 'string') {
@@ -61,15 +42,16 @@ const Register = () => {
       if (formData.email && password) {
         await createNewUser(formData.email, password);
         await updateUserProfile({ displayName: formData.name, photoURL: photoUrl, ...formDataWithoutPassword });
+        console.log(formDataWithoutPassword);
+        
         notify("Registered successfully!");
         navigate(from, { replace: true });
       }
     } catch (error) {
       notifyError(error.message);
     }
-
   };
-  
+
   return (
     <div className="hero bg-blue-50 min-h-fit rounded-lg py-24">
       <div className="hero-content flex-col gap-16 w-full">
@@ -196,17 +178,7 @@ const Register = () => {
               <button type="submit" className="btn bg-blue-300 w-full">
                 Register
               </button>
-            </div>
-            <div className="form-control mt-6 col-span-2">
-              <button
-                type="button"
-                className="btn bg-blue-300 w-full"
-                onClick={handleGoogleSignInClick}
-              >
-                <div className="flex gap-2 items-center">
-                  <p>Google</p>
-                </div>
-              </button>
+              <SocialLogin></SocialLogin>
             </div>
           </form>
         </div>
