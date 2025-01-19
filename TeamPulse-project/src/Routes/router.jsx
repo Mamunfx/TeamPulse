@@ -8,6 +8,8 @@ import Login from "../Layouts/Login";
 import Register from './../Layouts/Register';
 import Contact from './../Layouts/Contact';
 import PrivateRoute from "./PrivateRoute";
+import PrivateForHr from "./PrivateForHr";
+import PrivateForAdmin from "./PrivateForAdmin";
 import Dashboard from './../Layouts/Dashboard';
 import PaymentHistory from './../Layouts/PaymentHistory';
 import EmployeeList from './../Layouts/EmployeeList';
@@ -40,23 +42,23 @@ import Progress from './../Layouts/Progress';
             },
             {
               path:"/Dashboard/EmployeeList",
-              element:<EmployeeList></EmployeeList>,
+              element:<PrivateForHr><EmployeeList></EmployeeList></PrivateForHr>,
             },
             {
               path:"/Dashboard/details/:email",
-              element:<DetailsOfSalary></DetailsOfSalary>,
+              element:<PrivateForHr><DetailsOfSalary></DetailsOfSalary></PrivateForHr>,
             },
             {
               path:"/Dashboard/Progress",
-              element:<Progress></Progress>,
+              element:<PrivateForHr><Progress></Progress></PrivateForHr>,
             },
             {
               path:"/Dashboard/allEmployee",
-              element:<AllEmployee></AllEmployee>,
+              element:<PrivateForAdmin><AllEmployee></AllEmployee></PrivateForAdmin>,
             },
             {
               path:"/Dashboard/Payroll",
-              element:<Payroll></Payroll>,
+              element:<PrivateForAdmin><Payroll></Payroll></PrivateForAdmin>,
             },
           ]
         },

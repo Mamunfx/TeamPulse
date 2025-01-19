@@ -4,11 +4,14 @@ import { createContext, useEffect, useState } from "react";
 import LoadingState from './Components/LoadingState';
 import { auth } from './firebase.init';
 import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
+import axios from 'axios';
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [userData, setUserData] = useState(null);
+
   const [loading, setLoading] = useState(true);
 
   const notify = (message) => toast.success(message, {
@@ -89,7 +92,6 @@ const AuthProvider = ({ children }) => {
         setLoading(false);
       });
   };
-  
 
   const updateUserProfile = (profile) => {
     setLoading(true);
@@ -103,16 +105,28 @@ const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser?.email) {
         setUser(currentUser);
-
+        try {
+          console.log("Fetching user data for:", currentUser.email);
+          const response = await axios.get(`${import.meta.env.VITE_API_URL}/users/${currentUser.email}`);
+          if (response.data) {
+            console.log("User data received:", response.data);
+            setUserData(response.data);
+          } else {
+            console.log("No user data found");
+          }
+        } catch (error) {
+          console.error("Error fetching user data:", error);
+          notifyError(error.message);
+        }
       } else {
         setUser(null);
+        setUserData(null);
       }
       setLoading(false);
     });
-
     return () => unsubscribe();
   }, []);
-
+  
   const authInfo = {
     user,
     setUser,
@@ -123,7 +137,8 @@ const AuthProvider = ({ children }) => {
     handleGoogleSignIn,
     notify,
     notifyError,
-    updateUserProfile
+    updateUserProfile,
+    userData
   };
 
   if (loading) {
