@@ -1,9 +1,14 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
+import Sidebar from '../Components/Sidebar';
 
 const Dashboard = () => {
     return (
-        <div>
-            <h1>This is dashboard</h1>
+        <div className='grid grid-cols-4'>
+            <div className='col-span-1'>
+            <Sidebar></Sidebar>
+            </div>
+            <Outlet></Outlet>
         </div>
     );
 };

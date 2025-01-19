@@ -9,6 +9,13 @@ import Register from './../Layouts/Register';
 import Contact from './../Layouts/Contact';
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from './../Layouts/Dashboard';
+import PaymentHistory from './../Layouts/PaymentHistory';
+import EmployeeList from './../Layouts/EmployeeList';
+import WorkSheet from './../Layouts/WorkSheet';
+import AllEmployee from './../Layouts/AllEmployee';
+import Payroll from './../Layouts/Payroll';
+import DetailsOfSalary from './../Layouts/DetailsOfSalary';
+import Progress from './../Layouts/Progress';
 
   export const router = createBrowserRouter([
     {
@@ -22,6 +29,36 @@ import Dashboard from './../Layouts/Dashboard';
         {
           path:"/Dashboard",
           element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+          children:[
+            {
+              path:"/Dashboard/WorkSheet",
+              element:<WorkSheet></WorkSheet>,
+            },
+            {
+              path:"/Dashboard/PayHistory",
+              element:<PaymentHistory></PaymentHistory>,
+            },
+            {
+              path:"/Dashboard/EmployeeList",
+              element:<EmployeeList></EmployeeList>,
+            },
+            {
+              path:"/Dashboard/details/:email",
+              element:<DetailsOfSalary></DetailsOfSalary>,
+            },
+            {
+              path:"/Dashboard/Progress",
+              element:<Progress></Progress>,
+            },
+            {
+              path:"/Dashboard/allEmployee",
+              element:<AllEmployee></AllEmployee>,
+            },
+            {
+              path:"/Dashboard/Payroll",
+              element:<Payroll></Payroll>,
+            },
+          ]
         },
         {
           path:"/Contact",

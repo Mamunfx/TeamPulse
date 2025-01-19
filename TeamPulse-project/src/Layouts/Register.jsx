@@ -4,7 +4,7 @@ import { AuthContext } from "./../AuthProvider";
 import { uploadImage } from "./../Utilities/utils";
 
 const Register = () => {
-  const { createNewUser, handleGoogleSignIn, notify, notifyError, updateUserProfile } = useContext(AuthContext);
+  const { handleGoogleSignIn, notify, notifyError, updateUserProfile,createNewUser} = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -28,20 +28,18 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { email, password, photo, role, name } = formData;
-
+  const handleGoogleSignInClick = async () => {
     try {
-      let photoUrl = "";
-      if (photo) {
-        photoUrl = await uploadImage(photo); 
-      }
-      if (email && password) {
-        await createNewUser(email, password);
-        await updateUserProfile({ displayName: name, photoURL: photoUrl }); 
-        notify("Registered successfully!");
-        console.log(formData);
+      const result = await handleGoogleSignIn();
+      if (result) {
+        const { email, displayName, photoURL } = result.user;
+        setFormData(prevData => ({
+          ...prevData,
+          email,
+          name: displayName,
+          photo: photoURL,
+        }));
+        notify("Signed in with Google successfully!");
         navigate(from, { replace: true });
       }
     } catch (error) {
@@ -49,6 +47,29 @@ const Register = () => {
     }
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { password, ...formDataWithoutPassword } = formData;
+    console.log(formDataWithoutPassword);
+    try {
+      let photoUrl = "";
+      if (formData.photo && typeof formData.photo !== 'string') {
+        photoUrl = await uploadImage(formData.photo);
+      } else {
+        photoUrl = formData.photo;
+      }
+      if (formData.email && password) {
+        await createNewUser(formData.email, password);
+        await updateUserProfile({ displayName: formData.name, photoURL: photoUrl, ...formDataWithoutPassword });
+        notify("Registered successfully!");
+        navigate(from, { replace: true });
+      }
+    } catch (error) {
+      notifyError(error.message);
+    }
+
+  };
+  
   return (
     <div className="hero bg-blue-50 min-h-fit rounded-lg py-24">
       <div className="hero-content flex-col gap-16 w-full">
@@ -180,7 +201,7 @@ const Register = () => {
               <button
                 type="button"
                 className="btn bg-blue-300 w-full"
-                onClick={handleGoogleSignIn}
+                onClick={handleGoogleSignInClick}
               >
                 <div className="flex gap-2 items-center">
                   <p>Google</p>
