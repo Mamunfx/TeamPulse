@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./../AuthProvider";
 import { uploadImage } from "./../Utilities/utils";
 import SocialLogin from "../Components/Social";
+import axios from 'axios'; 
 
 const Register = () => {
   const { notify, notifyError, updateUserProfile, createNewUser } = useContext(AuthContext);
@@ -42,10 +43,10 @@ const Register = () => {
       if (formData.email && password) {
         await createNewUser(formData.email, password);
         await updateUserProfile({ displayName: formData.name, photoURL: photoUrl, ...formDataWithoutPassword });
-        console.log(formDataWithoutPassword);
-        
-        notify("Registered successfully!");
-        navigate(from, { replace: true });
+
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/users/${formData.email}`, {
+          ...formDataWithoutPassword,
+        });
       }
     } catch (error) {
       notifyError(error.message);

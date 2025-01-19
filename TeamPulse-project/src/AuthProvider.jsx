@@ -11,7 +11,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const notify = (message = 'Success!') => toast.success(message, {
+  const notify = (message) => toast.success(message, {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -23,7 +23,7 @@ const AuthProvider = ({ children }) => {
     transition: Bounce,
   });
 
-  const notifyError = (message = 'Error!') => toast.error(message, {
+  const notifyError = (message) => toast.error(message, {
     position: "top-center",
     autoClose: 5000,
     hideProgressBar: false,
@@ -39,7 +39,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        setUser(userCredential.user); // Set the user state
+        setUser(userCredential.user); 
         notify("Signed up and logged in!");
       })
       .catch(error => notifyError(error.message))
