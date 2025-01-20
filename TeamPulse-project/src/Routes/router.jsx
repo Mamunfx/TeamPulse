@@ -1,6 +1,4 @@
-import {
-    createBrowserRouter,
-  } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
 import Main from './../Layouts/Main';
 import NotFound from './../Components/NotFound';
 import Home from './../Layouts/Home';
@@ -19,65 +17,65 @@ import Payroll from './../Layouts/Payroll';
 import DetailsOfSalary from './../Layouts/DetailsOfSalary';
 import Progress from './../Layouts/Progress';
 
-  export const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Main></Main>,
-      children:[
-        {
-          path:"",
-          element:<Home></Home>,
-        },
-        {
-          path:"/Dashboard",
-          element:<PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
-          children:[
-            {
-              path:"/Dashboard/WorkSheet",
-              element:<WorkSheet></WorkSheet>,
-            },
-            {
-              path:"/Dashboard/PayHistory",
-              element:<PaymentHistory></PaymentHistory>,
-            },
-            {
-              path:"/Dashboard/EmployeeList",
-              element:<PrivateForHr><EmployeeList></EmployeeList></PrivateForHr>,
-            },
-            {
-              path:"/Dashboard/details/:email",
-              element:<PrivateForHr><DetailsOfSalary></DetailsOfSalary></PrivateForHr>,
-            },
-            {
-              path:"/Dashboard/Progress",
-              element:<PrivateForHr><Progress></Progress></PrivateForHr>,
-            },
-            {
-              path:"/Dashboard/allEmployee",
-              element:<PrivateForAdmin><AllEmployee></AllEmployee></PrivateForAdmin>,
-            },
-            {
-              path:"/Dashboard/Payroll",
-              element:<PrivateForAdmin><Payroll></Payroll></PrivateForAdmin>,
-            },
-          ]
-        },
-        {
-          path:"/Contact",
-          element:<Contact></Contact>,
-        },
-        {
-          path:"Login",
-          element:<Login></Login>,
-        },
-        {
-          path:"Register",
-          element:<Register></Register>,
-        },
-      ]
-    },
-    {
-      path:'*',
-      element:<NotFound></NotFound>
-    }
-  ]);
+export const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Main />,
+    children: [
+      {
+        path: "",
+        element: <Home />,
+      },
+      {
+        path: "/Dashboard",
+        element: <PrivateRoute><Dashboard /></PrivateRoute>,
+        children: [
+          {
+            path: "/Dashboard/WorkSheet",
+            element: <WorkSheet />,
+          },
+          {
+            path: "/Dashboard/PayHistory",
+            element: <PaymentHistory />,
+          },
+          {
+            path: "/Dashboard/EmployeeList",
+            element: <PrivateForHr><EmployeeList /></PrivateForHr>,
+          },
+          {
+            path: "/Dashboard/details/:email",
+            element: <PrivateForHr><DetailsOfSalary /></PrivateForHr>,
+          },
+          {
+            path: "/Dashboard/Progress",
+            element: <PrivateForHr><Progress /></PrivateForHr>,
+          },
+          {
+            path: "/Dashboard/allEmployee",
+            element: <PrivateForAdmin><AllEmployee /></PrivateForAdmin>,
+          },
+          {
+            path: "/Dashboard/Payroll",
+            element: <PrivateForAdmin><Payroll /></PrivateForAdmin>,
+          },
+        ],
+      },
+      {
+        path: "/Contact",
+        element: <Contact />,
+      },
+      {
+        path: "Login",
+        element: <Login />,
+      },
+      {
+        path: "Register",
+        element: <Register />,
+      },
+    ],
+  },
+  {
+    path: '*',
+    element: <NotFound />,
+  },
+]);
