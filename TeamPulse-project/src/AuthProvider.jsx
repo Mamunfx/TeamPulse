@@ -125,7 +125,6 @@ const AuthProvider = ({ children }) => {
             },
             { withCredentials: true }
           );
-          console.log("login token", tokenResponse.data);
           const userResponse = await axios.get(
             `${import.meta.env.VITE_API_URL}/users/${currentUser.email}`,
             { withCredentials: true }

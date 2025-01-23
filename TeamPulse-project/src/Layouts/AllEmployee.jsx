@@ -7,9 +7,7 @@ const AllEmployee = () => {
     const [allemployees, setemployees] = useState([]);
 
     useEffect(() => {
-        console.log('Fetching employees...'); 
         axios.get(`${import.meta.env.VITE_API_URL}/users`, {withCredentials:true}).then((res) => {
-                console.log('Fetched employees:', res.data); 
                 setemployees(res.data);
             }).catch((err) => {
                 console.error('Error fetching data:', err);
