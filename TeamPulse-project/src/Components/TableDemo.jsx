@@ -1,46 +1,39 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const TableDemo = () => {
+const TableDemo = ({ allemployees = [] }) => {
   return (
     <div>
       <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-      <tr>
-        <th>1</th>
-        <td>Cy Ganderton</td>
-        <td>Quality Control Specialist</td>
-        <td>Blue</td>
-      </tr>
-      {/* row 2 */}
-      <tr>
-        <th>2</th>
-        <td>Hart Hagerty</td>
-        <td>Desktop Support Technician</td>
-        <td>Purple</td>
-      </tr>
-      {/* row 3 */}
-      <tr>
-        <th>3</th>
-        <td>Brice Swyre</td>
-        <td>Tax Accountant</td>
-        <td>Red</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+        <table className="table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Designation</th>
+              <th>Make HR</th>
+              <th>Fire</th>
+            </tr>
+          </thead>
+          <tbody>
+            {allemployees.map((employee, index) => (
+              <tr key={index}>
+                <th>{index + 1}</th>
+                <td>{employee.name}</td>
+                <td>{employee.designation}</td>
+                <td><button className='btn btn-warning'>hr</button></td>
+                <td><button className='btn btn-warning'>Fire</button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
+};
+
+TableDemo.propTypes = {
+  allemployees: PropTypes.array.isRequired,
 };
 
 export default TableDemo;
