@@ -15,6 +15,7 @@ const Register = () => {
     designation: '',
     photo: null,
     role: 'employee',
+    isVerified:'false',
     name: '',
   });
 

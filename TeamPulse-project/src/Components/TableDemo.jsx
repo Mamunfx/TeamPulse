@@ -21,7 +21,9 @@ const TableDemo = ({ allemployees = [] }) => {
                 <th>{index + 1}</th>
                 <td>{employee.name}</td>
                 <td>{employee.designation}</td>
-                <td><button className='btn btn-warning'>hr</button></td>
+                <td>
+                <button className='btn btn-warning'>hr</button>
+                  </td>
                 <td><button className='btn btn-warning'>Fire</button></td>
               </tr>
             ))}
