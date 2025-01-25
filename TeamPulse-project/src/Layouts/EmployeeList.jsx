@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import TableDemo from './../Components/TableDemo';
 import axios from 'axios'
+import EmployeeTable from './../Components/EmployeeTable';
 const EmployeeList = () => {
     const [allemployees, setemployees] = useState([]);
 
@@ -21,7 +21,7 @@ const EmployeeList = () => {
         <div>
             <h1>This is employee list </h1>
 
-            <TableDemo allemployees={allemployees} ></TableDemo>
+            <EmployeeTable allemployees={allemployees} ></EmployeeTable>
         </div>
     );
 };

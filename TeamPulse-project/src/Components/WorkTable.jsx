@@ -18,7 +18,7 @@ const WorkTable = ({allWorks}) => {
           </thead>
           <tbody>
             {
-              allWorks.map((work, idx) => (
+              allWorks?.map((work, idx) => (
                 <tr key={idx}>
                   <th>{idx + 1}</th>
                   <td>{work.selectedWork}</td>
