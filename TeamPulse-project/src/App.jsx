@@ -1,25 +1,15 @@
 import React from 'react';
-import { ToastContainer, toast, Bounce } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { Elements } from '@stripe/react-stripe-js';
+import { loadStripe } from '@stripe/stripe-js';
+import PayrollTable from './Components/PayrollTable';
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
 
-const App = () => {
-  const notify = () => toast.success('Success!', {
-    position: "top-center",
-    autoClose: 5000,
-    hideProgressBar: false,
-    closeOnClick: false,
-    pauseOnHover: true,
-    draggable: true,
-    progress: undefined,
-    theme: "light",
-    transition: Bounce,
-  });
-
+function App() {
   return (
-    <div>
-      <button onClick={notify}>Notify</button>
-      <ToastContainer />
-    </div>
+    <Elements stripe={stripePromise}>
+      <PayrollTable />
+    </Elements>
   );
-};
+}
+
 export default App;

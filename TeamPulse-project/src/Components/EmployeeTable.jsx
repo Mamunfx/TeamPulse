@@ -41,6 +41,7 @@ const EmployeeTable = ({ allemployees = [] }) => {
       salary: currentEmployee.salary,
       month,
       year,
+      isPaid:"false",
       email: currentEmployee.email
     };
     try {
