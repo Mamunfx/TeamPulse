@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const EmployeeTable = ({ allemployees = [] }) => {
   const [employees, setEmployees] = useState(allemployees);
@@ -7,6 +8,7 @@ const EmployeeTable = ({ allemployees = [] }) => {
   const [currentEmployee, setCurrentEmployee] = useState(null);
   const [month, setMonth] = useState('');
   const [year, setYear] = useState('');
+  const [salary, setSalary] = useState('');
 
   const toggleVerification = async (email, currentStatus) => {
     const newStatus = currentStatus === "false" ? "true" : "false";
@@ -24,8 +26,10 @@ const EmployeeTable = ({ allemployees = [] }) => {
       console.error('Error updating verification status:', error.response ? error.response.data.message : error.message);
     }
   };
+
   const openModal = (employee) => {
     setCurrentEmployee(employee);
+    setSalary(employee.salary);
     setMonth('');  
     setYear('');  
     setShowModal(true);
@@ -38,10 +42,10 @@ const EmployeeTable = ({ allemployees = [] }) => {
   const handleConfirm = async () => {
     const payReq = {
       name: currentEmployee.name,
-      salary: currentEmployee.salary,
+      salary,
       month,
       year,
-      isPaid:"false",
+      isPaid: "false",
       email: currentEmployee.email
     };
     try {
@@ -93,7 +97,7 @@ const EmployeeTable = ({ allemployees = [] }) => {
                     Pay Request
                   </button>
                 </td>
-                <td><button className='btn'>Detials</button></td>
+                <td><Link className='btn ' to={`/Dashboard/details/${employee.email}`}>Details</Link></td>
               </tr>
             ))}
           </tbody>
@@ -108,15 +112,30 @@ const EmployeeTable = ({ allemployees = [] }) => {
             <form>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Salary</label>
-                <input type="text" value={currentEmployee.salary} readOnly className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input
+                  type="text"
+                  value={salary}
+                  onChange={(e) => setSalary(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Month</label>
-                <input type="text" value={month} onChange={(e) => setMonth(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input
+                  type="text"
+                  value={month}
+                  onChange={(e) => setMonth(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
               </div>
               <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2">Year</label>
-                <input type="text" value={year} onChange={(e) => setYear(e.target.value)} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+                <input
+                  type="text"
+                  value={year}
+                  onChange={(e) => setYear(e.target.value)}
+                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                />
               </div>
               <div className="flex justify-end">
                 <button type="button" onClick={handleConfirm} className="btn btn-success">Confirm</button>

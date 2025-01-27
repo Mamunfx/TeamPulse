@@ -19,7 +19,8 @@ const PayrollTable = () => {
         const response = await axios.get(`${import.meta.env.VITE_API_URL}/payReq`, {
           withCredentials: true
         });
-        setPayReqs(response.data);
+        const sortedPayReqs = response.data.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+        setPayReqs(sortedPayReqs);
       } catch (error) {
         console.error('Error fetching pay requests:', error);
       }

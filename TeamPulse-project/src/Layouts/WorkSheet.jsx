@@ -7,25 +7,30 @@ import axios from "axios";
 const WorkSheet = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-  const [allworks, setAllWorks] = useState([]);
+  const [allWorks, setAllWorks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [hours, setHours] = useState("");
   const [date, setDate] = useState("");
   const works = ["Sales", "Support", "Content", "Paper-work"];
   const [selectedWork, setSelectedWork] = useState(works[0]);
 
-  useEffect(() => {
+  const fetchWorks = async () => {
     if (user?.email) {
-      axios.get(`${import.meta.env.VITE_API_URL}/works/${user?.email}`, {
+      try {
+        const response = await axios.get(`${import.meta.env.VITE_API_URL}/works/${user?.email}`, {
           withCredentials: true,
-        }).then((res) => {
-          setAllWorks(res.data);
-          setIsLoading(false);
-        }).catch((error) => {
-          console.error("Error fetching works:", error);
-          setIsLoading(false);
         });
+        setAllWorks(response.data);
+        setIsLoading(false);
+      } catch (error) {
+        console.error("Error fetching works:", error);
+        setIsLoading(false);
+      }
     }
+  };
+
+  useEffect(() => {
+    fetchWorks();
   }, [user?.email]);
 
   const handleSubmit = async(e) => {
@@ -37,20 +42,15 @@ const WorkSheet = () => {
       email: user?.email,
     };
 
-   await axiosSecure.post(`${import.meta.env.VITE_API_URL}/works`, formData).then(() => {
-        axios.get(`${import.meta.env.VITE_API_URL}/works/${user?.email}`, {
-            withCredentials: true,
-          }).then((res) => {
-            setAllWorks(res.data);
-            alert("Work added");
-          }).catch((error) => {
-            console.error("Error fetching works:", error);
-          });
-      }).catch((error) => {
-        console.error("Error adding work:", error);
-      });
+    try {
+      await axiosSecure.post(`${import.meta.env.VITE_API_URL}/works`, formData);
+      fetchWorks(); // Refresh the works list
+      alert("Work added");
+    } catch (error) {
+      console.error("Error adding work:", error);
+    }
   };
- 
+
   return (
     <div className="p-4">
       <form
@@ -91,7 +91,7 @@ const WorkSheet = () => {
       {isLoading ? (
         <p>Loading...</p>
       ) : (
-        <WorkTable allWorks={allworks}></WorkTable>
+        <WorkTable allWorks={allWorks} fetchWorks={fetchWorks}></WorkTable>
       )}
     </div>
   );
