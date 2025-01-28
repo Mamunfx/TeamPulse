@@ -8,7 +8,7 @@ const PaymentHistoryTable = ({ payments = [] }) => {
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
+              <th>Transaction Id</th>
               <th>Salary</th>
               <th>Month</th>
               <th>Year</th>
@@ -18,7 +18,7 @@ const PaymentHistoryTable = ({ payments = [] }) => {
             {payments.map((payment, index) => (
               <tr key={index}>
                 <th>{index + 1}</th>
-                <td>{payment.name}</td>
+                <td>{payment.paymentIntentId}</td>
                 <td>{payment.salary}</td>
                 <td>{payment.month}</td>
                 <td>{payment.year}</td>
