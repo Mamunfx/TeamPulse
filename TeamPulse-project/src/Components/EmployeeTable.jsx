@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from './../AuthProvider';
 
 const EmployeeTable = ({ allemployees = [] }) => {
-  const {notify}=useContext(AuthContext)
+  const { notify }=useContext(AuthContext)
   const [employees, setEmployees] = useState(allemployees);
   const [showModal, setShowModal] = useState(false);
   const [currentEmployee, setCurrentEmployee] = useState(null);
