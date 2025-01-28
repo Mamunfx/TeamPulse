@@ -22,4 +22,4 @@ TeamPulse is designed for a well-renowned company to monitor employee workload, 
 - **Communication Tools**: Built-in messaging and communication tools to enhance collaboration between employees and HR Executives.
 - **Report Generation**: Automated report generation for payroll, attendance, and performance evaluations.
 
-### Note :  ALl the image are stored in imgbb soo all the resources can take some time to load . Also after clicking Login or Register please wait for a while . And those user who is registering with social media they will be visitors only in the website !
+### Note :  All the image are stored in imgbb soo all the resources can take some time to load . Also after clicking Login or Register please wait for a while . And those user who is registering with social media they will be visitors only in the website !
