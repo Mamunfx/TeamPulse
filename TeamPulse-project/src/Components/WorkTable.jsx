@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import UpdateModal from './UpdateModal';
 
 const WorkTable = ({ allWorks, fetchWorks }) => {
   const [selectedWork, setSelectedWork] = useState(null);
+
+  useEffect(() => {
+    fetchWorks(); // Ensures the data is fetched on initial render
+  }, []);
 
   const deleteWork = async (id) => {
     try {

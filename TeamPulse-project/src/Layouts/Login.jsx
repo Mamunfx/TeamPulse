@@ -15,7 +15,6 @@ const Login = () => {
     const password = data.password;
     userLogin(email, password)
       .then(() => {
-        notify("Logged in!");
         navigate(from, { replace: true });
       })
       .catch((error) => {

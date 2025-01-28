@@ -1,8 +1,8 @@
 # TeamPulse
 
-### Admin Username:
-### Password:
-### Live Site URL: 
+### Admin Username: admin@gmail.com
+### Password: 123321
+### Live Site URL: https://assignment12-e4afd.web.app
 
 ## Introduction
 
