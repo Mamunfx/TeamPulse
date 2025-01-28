@@ -159,7 +159,7 @@ const TableDemo = ({ allemployees = [] }) => {
                 ) : (
                   <div>
                     <button
-                      className="btn btn-warning"
+                      
                       onClick={() => openHRModal(employee.email)}
                     >
                       {employee.role === 'hr' ? <FcApproval className='text-3xl'/> : <MdBlock className='text-3xl text-red-600' />}
@@ -194,7 +194,7 @@ const TableDemo = ({ allemployees = [] }) => {
             <p>Are you sure you want to fire this employee or HR?</p>
             <div className="mt-6 flex justify-end">
               <button
-                className="btn btn-secondary mr-2"
+                className="btn btn-info mr-2"
                 onClick={closeFireModal}
               >
                 No
@@ -217,7 +217,7 @@ const TableDemo = ({ allemployees = [] }) => {
             <p>Are you sure you want to change this employee's role?</p>
             <div className="mt-6 flex justify-end">
               <button
-                className="btn btn-secondary mr-2"
+                className="btn btn-warning mr-2"
                 onClick={closeHRModal}
               >
                 No
