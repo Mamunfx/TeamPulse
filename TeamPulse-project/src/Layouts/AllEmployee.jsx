@@ -20,7 +20,7 @@ const AllEmployee = () => {
 
     return (
         <div>
-            <h1>All employee list</h1>
+            <h1 className='text-3xl mb-6'>All employee list</h1>
             <TableDemo allemployees={allemployees}></TableDemo>
         </div>
     );

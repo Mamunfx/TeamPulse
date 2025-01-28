@@ -48,7 +48,7 @@ const Contact = () => {
             />
           </div>
           <div className="form-control md:col-span-2">
-            <button type="submit" className="btn bg-blue-500 text-white w-full">
+            <button type="submit" className="btn w-full">
               Send Message
             </button>
           </div>

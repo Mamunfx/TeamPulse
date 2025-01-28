@@ -139,7 +139,7 @@ const EmployeeTable = ({ allemployees = [] }) => {
               </div>
               <div className="flex justify-end">
                 <button type="button" onClick={handleConfirm} className="btn btn-success">Confirm</button>
-                <button type="button" onClick={closeModal} className="btn btn-secondary ml-2">Cancel</button>
+                <button type="button" onClick={closeModal} className="btn btn-warning ml-2">Cancel</button>
               </div>
             </form>
           </div>

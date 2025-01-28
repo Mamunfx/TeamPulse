@@ -10,6 +10,7 @@ const PayrollTable = () => {
   const [currentPayReq, setCurrentPayReq] = useState(null);
   const [clientSecret, setClientSecret] = useState('');
   const [payReqs, setPayReqs] = useState([]);
+  const [modifiedSalary, setModifiedSalary] = useState(0);
   const stripe = useStripe();
   const elements = useElements();
 
@@ -43,6 +44,7 @@ const PayrollTable = () => {
       });
       setClientSecret(response.data.clientSecret);
       setCurrentPayReq(PayReq);
+      setModifiedSalary(PayReq.salary);
       setModalIsOpen(true);
     } catch (error) {
       console.error('Error:', error);
@@ -68,7 +70,7 @@ const PayrollTable = () => {
           await axios.post(`${import.meta.env.VITE_API_URL}/confirm-payment`, {
             paymentIntentId: paymentResult.paymentIntent.id,
             name: currentPayReq.name,
-            salary: currentPayReq.salary,
+            salary: modifiedSalary,
             month: currentPayReq.month,
             year: currentPayReq.year,
             email: currentPayReq.email,
@@ -86,6 +88,13 @@ const PayrollTable = () => {
       }
     } catch (error) {
       console.error('Error:', error);
+    }
+  };
+
+  const handleSalaryChange = (event) => {
+    const newSalary = parseFloat(event.target.value);
+    if (newSalary >= currentPayReq.salary) {
+      setModifiedSalary(newSalary);
     }
   };
 
@@ -136,9 +145,19 @@ const PayrollTable = () => {
           <h2 className="text-xl font-semibold mb-4">Confirm Payment</h2>
           {currentPayReq && (
             <div>
-              <p className="mb-4">Paying ${currentPayReq.salary} for {currentPayReq.name}</p>
+              <p className="mb-4">Paying ${modifiedSalary} for {currentPayReq.name}</p>
               <form onSubmit={handleConfirmPayment} className="space-y-4">
                 <CardElement className="p-4 border border-gray-300 rounded-lg"/>
+                <div>
+                  <label className="block text-sm font-medium mb-2">Salary Amount</label>
+                  <input
+                    type="number"
+                    value={modifiedSalary}
+                    onChange={handleSalaryChange}
+                    min={currentPayReq.salary}
+                    className="p-2 border border-gray-300 rounded-lg w-full"
+                  />
+                </div>
                 <button type="submit" className="btn btn-success w-full">Confirm Payment</button>
               </form>
             </div>

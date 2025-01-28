@@ -53,6 +53,7 @@ const WorkSheet = () => {
 
   return (
     <div className="p-4">
+      <h1 className="text-3xl mb-6">Add a work : </h1>
       <form
         className="form-section flex flex-col gap-4 md:flex-row md:justify-between max-w-lg"
         onSubmit={handleSubmit}
@@ -84,7 +85,7 @@ const WorkSheet = () => {
           onChange={(e) => setDate(e.target.value)}
           required
         />
-        <button type="submit" className="p-2 bg-blue-500 text-white rounded-md">
+        <button type="submit" className="p-2 btn btn-accent ">
           Submit
         </button>
       </form>

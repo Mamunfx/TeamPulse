@@ -72,11 +72,11 @@ const Progress = () => {
 
     return (
         <div>
-            <h1>Progress is on</h1>
-            <div>
-                <label>
-                    Select Employee:
-                    <select value={email} onChange={handleEmailChange}>
+            <h1 className='text-3xl mb-6'>Progress </h1>
+            <div className='mb-4'>
+                <label className='mr-4'>
+                    <span className='text-lg'>Select Employee: </span>
+                    <select value={email} onChange={handleEmailChange} className='rounded-lg'>
                         <option value="">All</option>
                         {employees.map(employee => (
                             <option key={employee.email} value={employee.email}>
@@ -85,11 +85,11 @@ const Progress = () => {
                         ))}
                     </select>
                 </label>
-                <label>
-                    End Date:
-                    <input type="date" value={endDate} onChange={handleEndDateChange} />
+                <label className='mr-4'>
+                <span className='text-lg'>End date: </span>
+                    <input type="date" value={endDate} onChange={handleEndDateChange} className='rounded-lg' />
                 </label>
-                <button onClick={handleSearch}>Search</button>
+                <button onClick={handleSearch} className='btn btn-accent'>Search</button>
             </div>
             {isLoading && <p>Loading...</p>}
             {error && <p>Error fetching data: {error.message}</p>}

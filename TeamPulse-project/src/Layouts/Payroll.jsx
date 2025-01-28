@@ -21,7 +21,7 @@ const Payroll = () => {
 
     return (
         <div>
-            <h1>Pay list</h1>
+            <h1 className='text-3xl mb-8'>Pay request</h1>
             <PayrollTable allPayReq={allPayReq} />
         </div>
     );

@@ -15,7 +15,7 @@ const PaymentHistory = () => {
 
     return (
         <div>
-            <h1>This is payment history</h1>
+            <h1 className='text-3xl mb-6'>Payment history : </h1>
             <PaymentHistoryTable payments={paymentData} />
         </div>
     );
