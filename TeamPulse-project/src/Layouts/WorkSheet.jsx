@@ -5,7 +5,7 @@ import { AuthContext } from "../AuthProvider";
 import axios from "axios";
 
 const WorkSheet = () => {
-  const { user } = useContext(AuthContext);
+  const { user,notify } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
   const [allWorks, setAllWorks] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -45,7 +45,7 @@ const WorkSheet = () => {
     try {
       await axiosSecure.post(`${import.meta.env.VITE_API_URL}/works`, formData);
       fetchWorks(); // Refresh the works list
-      alert("Work added");
+     notify("Work added");
     } catch (error) {
       console.error("Error adding work:", error);
     }

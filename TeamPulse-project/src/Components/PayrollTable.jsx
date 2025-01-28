@@ -75,7 +75,7 @@ const PayrollTable = () => {
             year: currentPayReq.year,
             email: currentPayReq.email,
           });
-          console.log('Payment successful!');
+          //console.log('Payment successful!');
           setModalIsOpen(false);
 
           // Update the local state to reflect the payment status change

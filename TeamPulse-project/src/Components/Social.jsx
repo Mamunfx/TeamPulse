@@ -10,10 +10,10 @@ const SocialLogin = () => {
     const handleGoogleSignup = async () => {
         try {
             const result = await handleGoogleSignIn();
-            console.log("Google Sign-In Result:", result);
+            //console.log("Google Sign-In Result:", result);
 
             if (result.user) {
-                console.log("User Info:", result.user);
+                //console.log("User Info:", result.user);
                 const userInfo = {
                     email: result?.user?.email,
                     name: result?.user?.displayName,
@@ -24,7 +24,7 @@ const SocialLogin = () => {
                 };
 
                 const res = await axios.post(`${import.meta.env.VITE_API_URL}/users/${userInfo.email}`, userInfo);
-                console.log("User successfully created:", res.data);
+                //console.log("User successfully created:", res.data);
                 navigate('/');
             } else {
                 console.error("User object is not available.");

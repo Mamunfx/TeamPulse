@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { MdBlock } from "react-icons/md";
 import { FcApproval } from "react-icons/fc";
+import { AuthContext } from '../AuthProvider';
 
 const TableDemo = ({ allemployees = [] }) => {
+  const {notify}=useContext(AuthContext)
   const [employees, setEmployees] = useState(allemployees);
   const [showFireModal, setShowFireModal] = useState(false);
   const [showHRModal, setShowHRModal] = useState(false);
@@ -25,7 +27,7 @@ const TableDemo = ({ allemployees = [] }) => {
             emp.email === email ? { ...emp, isFired: "true" } : emp
           )
         );
-        alert('Employee has been successfully fired!');
+        notify('Employee has been successfully fired!');
       } else {
         console.error('Failed to fire employee');
       }
@@ -49,7 +51,7 @@ const TableDemo = ({ allemployees = [] }) => {
             emp.email === email ? { ...emp, role: newRole } : emp
           )
         );
-        alert(`Employee role has been successfully changed to ${newRole}!`);
+        notify(`Employee role has been successfully changed to ${newRole}!`);
       } else {
         console.error('Failed to update employee role');
       }

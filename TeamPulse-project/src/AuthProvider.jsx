@@ -149,17 +149,17 @@ const AuthProvider = ({ children }) => {
 
   const fetchUserData = async (email) => {
     try {
-      console.log(`Fetching user data for email: ${email}`);
+      //console.log(`Fetching user data for email: ${email}`);
       const userResponse = await axios.get(
         `${import.meta.env.VITE_API_URL}/users/${email.toLowerCase()}`, // Convert to lowercase
         { withCredentials: true }
       );
-      console.log("User data response:", userResponse.data);
+      //console.log("User data response:", userResponse.data);
 
       if (userResponse.data) {
         setUserData(userResponse.data);
       } else {
-        console.log("No user data found");
+        //console.log("No user data found");
         setUserData(null);
       }
     } catch (error) {
@@ -175,7 +175,7 @@ const AuthProvider = ({ children }) => {
         { email: email.toLowerCase() }, // Convert to lowercase
         { withCredentials: true }
       );
-      console.log("JWT token created");
+      //console.log("JWT token created");
     } catch (error) {
       console.error("Error creating JWT token:", error);
       notifyError(error.message);
@@ -189,7 +189,7 @@ const AuthProvider = ({ children }) => {
         {},
         { withCredentials: true }
       );
-      console.log("JWT token deleted");
+      //console.log("JWT token deleted");
     } catch (error) {
       console.error("Error deleting JWT token:", error);
       notifyError(error.message);

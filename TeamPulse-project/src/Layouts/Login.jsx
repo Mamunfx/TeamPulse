@@ -20,6 +20,13 @@ const Login = () => {
       })
       .catch((error) => {
         notifyError(error.message);
+        if (error.message.includes("password")) {
+          notify("Password doesn't match. Please try again.");
+        } else if (error.message.includes("email")) {
+          notify("Email doesn't match. Please try again.");
+        } else {
+          notify("Login failed. Please check your credentials and try again.");
+        }
       });
   };
 

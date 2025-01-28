@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { AuthContext } from './../AuthProvider';
 
 const EmployeeTable = ({ allemployees = [] }) => {
+  const {notify}=useContext(AuthContext)
   const [employees, setEmployees] = useState(allemployees);
   const [showModal, setShowModal] = useState(false);
   const [currentEmployee, setCurrentEmployee] = useState(null);
@@ -52,9 +54,9 @@ const EmployeeTable = ({ allemployees = [] }) => {
       const response = await axios.post(`${import.meta.env.VITE_API_URL}/payReq`, payReq, {
         withCredentials: true
       });
-      console.log('Pay request successful:', response.data);
+      //console.log('Pay request successful:', response.data);
       closeModal();
-      alert('Pay request submitted successfully!');
+      notify('Pay request submitted successfully!');
     } catch (error) {
       console.error('Error submitting pay request:', error.response ? error.response.data.message : error.message);
     }

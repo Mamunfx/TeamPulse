@@ -59,8 +59,8 @@ const Progress = () => {
                 });
             }
 
-            console.log('Request params:', { email: selectedEmail, endDate: selectedEndDate });
-            console.log('Response data:', response.data);
+            //console.log('Request params:', { email: selectedEmail, endDate: selectedEndDate });
+            //console.log('Response data:', response.data);
             setAllWorks(response.data);
         } catch (err) {
             console.error('Error fetching works:', err);

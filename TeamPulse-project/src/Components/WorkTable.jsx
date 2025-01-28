@@ -10,7 +10,7 @@ const WorkTable = ({ allWorks, fetchWorks }) => {
       const response = await axios.delete(`${import.meta.env.VITE_API_URL}/works/${id}`, {
         withCredentials: true,
       });
-      console.log('Deleted:', response.data);
+      //console.log('Deleted:', response.data);
       fetchWorks(); // Fetch updated works list
     } catch (error) {
       console.error('Error deleting work:', error);
@@ -22,7 +22,7 @@ const WorkTable = ({ allWorks, fetchWorks }) => {
       const response = await axios.put(`${import.meta.env.VITE_API_URL}/works/${id}`, updatedWork, {
         withCredentials: true,
       });
-      console.log('Updated:', response.data);
+      //console.log('Updated:', response.data);
       fetchWorks(); // Fetch updated works list
     } catch (error) {
       console.error('Error updating work:', error);

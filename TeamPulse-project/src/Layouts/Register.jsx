@@ -6,7 +6,7 @@ import SocialLogin from "../Components/Social";
 import axios from 'axios';
 
 const Register = () => {
-  const { notifyError, updateUserProfile, createNewUser, userLogin } = useContext(AuthContext);
+  const { notifyError, updateUserProfile, createNewUser, userLogin,notify } = useContext(AuthContext);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -54,7 +54,7 @@ const Register = () => {
       let photoUrl = "";
       if (formData.photo && typeof formData.photo !== 'string') {
         photoUrl = await uploadImage(formData.photo);
-        console.log("Photo uploaded:", photoUrl);
+        //console.log("Photo uploaded:", photoUrl);
       } else {
         photoUrl = formData.photo;
       }
@@ -64,27 +64,27 @@ const Register = () => {
         if (!userCredential || !userCredential.user) {
           throw new Error("Failed to create user");
         }
-        console.log("User created:", userCredential.user);
+        //console.log("User created:", userCredential.user);
 
         await updateUserProfile({
           displayName: formData.name,
           photoURL: photoUrl,
         });
-        console.log("User profile updated");
+        //console.log("User profile updated");
 
         const dataToSend = {
           ...formDataWithoutPassword,
           email: email, // Ensure email is sent in the data payload
           photo: photoUrl
         };
-        console.log("Sending data to backend:", dataToSend);
+        //console.log("Sending data to backend:", dataToSend);
 
         const dbResponse = await axios.post(`${import.meta.env.VITE_API_URL}/users/${email}`, dataToSend);
-        console.log("User added to database:", dbResponse.data);
+        //console.log("User added to database:", dbResponse.data);
 
         // Log the user in after successful registration and profile update
         await userLogin(email, password);
-        console.log("User logged in");
+        //console.log("User logged in");
 
         navigate(from, { replace: true });
       }
@@ -93,7 +93,7 @@ const Register = () => {
       notifyError(error.message);
       newErrors.push(error.message);
       setErrors(newErrors);
-      alert("Registration failed: " + error.message);
+      notify("Registration failed: " + error.message);
     }
   };
 
@@ -220,15 +220,21 @@ const Register = () => {
                 required
               />
             </div>
+
+            <div className="w-full col-span-2">
+              <h1 className="text-red-500 ">Use 1 capital letter , 1 special charecter and 6 total key for password.</h1>
+            </div>
+            
             <div className="form-control mt-6 col-span-2 ">
               <button type="submit" className="w-full btn bg-blue-300">
                 Register
               </button>
               <SocialLogin />
             </div>
+            
             {errors.length > 0 && (
               <div className="form-control mt-6 col-span-2">
-                <div className="shadow-lg alert alert-error">
+                <div className="shadow-lg notify notify-error">
                   <div>
                     <span>
                       {errors.map((error, index) => (
