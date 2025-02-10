@@ -7,7 +7,7 @@
 TeamPulse is designed for a well-renowned company to monitor employee workload, keep records of salaries, contracts, and more. This system allows employees to post updates about their workflow while enabling the HR Executive to manage, monitor, and process employee-related tasks efficiently.
 
 ## Screenshot
-![TeamPulse Screenshot](https://via.placeholder.com/800x400.png?text=TeamPulse+HR+Management+System)
+![TeamPulse Screenshot](https://i.ibb.co.com/d0Wtg239/Screenshot-2025-02-11-014153.png)
 
 ## Technologies Used
 - HTML5, CSS3, JavaScript
