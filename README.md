@@ -7,14 +7,13 @@
 TeamPulse is designed for a well-renowned company to monitor employee workload, keep records of salaries, contracts, and more. This system allows employees to post updates about their workflow while enabling the HR Executive to manage, monitor, and process employee-related tasks efficiently.
 
 ## Screenshot
-![TeamPulse Screenshot](https://i.ibb.co.com/d0Wtg239/Screenshot-2025-02-11-014153.png)
+![TeamPulse Screenshot]([https://i.ibb.co.com/d0Wtg239/Screenshot-2025-02-11-014153.png](https://i.ibb.co/d0Wtg239/Screenshot-2025-02-11-014153.png))
 
 ## Technologies Used
 - HTML5, CSS3, JavaScript
 - React.js
 - Firebase Authentication
 - Firestore Database
-- Bootstrap
 
 ## Features
 - **Employee Dashboard:** An intuitive dashboard for employees to post workflow updates and check their tasks.
